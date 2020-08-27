@@ -1,11 +1,13 @@
 package portfolio;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
+import portfolio.exception.InvalidInputException;
 
 public class ClientApiTest {
 
@@ -28,6 +30,18 @@ public class ClientApiTest {
         assertTrue(bitCoinValue.contains("GBP"));
         assertTrue(new BigDecimal(extractBitcoinValueFromResponse(bitCoinValue))
                 .compareTo(new BigDecimal(0)) > 0);
+
+    }
+
+    @Test
+    void shouldThrowInvalidInputExceptionForInvalidCurrency() {
+        ClientApi clientApi = new ClientApi();
+
+        Exception exception = assertThrows(
+                InvalidInputException.class,
+                () -> clientApi.getBitCoinValue("BTC", "xxx"));
+
+        assertTrue(exception.getMessage().contains("Invalid input"));
 
     }
 
