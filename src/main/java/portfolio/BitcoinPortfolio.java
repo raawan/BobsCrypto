@@ -13,11 +13,19 @@ public class BitcoinPortfolio {
         this.fileApi = fileApi;
     }
 
+    public ClientApi getClientApi() {
+        return clientApi;
+    }
+
+    public FileApi getFileApi() {
+        return fileApi;
+    }
+
     public double calculatePortfolioValue(Map<String, Double> totalValuePerBitcoin) {
         return 0.0;
     }
 
-    public Map<String, Double> calculateBitcoinValue(List<String> fileInput) {
+    public Map<String, Double> calculateBitcoinTotalValue(List<String> fileInput) {
         return null;
     }
 }

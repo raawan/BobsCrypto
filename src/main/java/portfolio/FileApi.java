@@ -19,10 +19,8 @@ public class FileApi {
 
     public List<String> getLines() {
         List<String> lines = new ArrayList<>();
-        try {
-            try (Stream<String> stream = Files.lines(Paths.get(fileLocation))) {
-                stream.forEach(line -> lines.add(line));
-            }
+        try (Stream<String> stream = Files.lines(Paths.get(fileLocation))) {
+            stream.forEach(line -> lines.add(line));
         } catch (IOException e) {
             throw new FileReadException("Error reading file");
         }
