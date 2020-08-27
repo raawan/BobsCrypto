@@ -21,31 +21,33 @@ public class ClientApi {
                 .append(currency)
                 .toString();
 
-        final var httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
+        HttpResponse<String> response;
+        try {
+            response = getHttpClient().send(getHttpRequest(uri), HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            throw new RestClientException("Error communicating REST api");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RestClientException("Error communicating REST api");
+        }
 
-        final var httpRequest = HttpRequest.newBuilder()
+        final var body = response.body();
+        if (body.contains("Error")) {
+            throw new InvalidInputException("Invalid Input");
+        }
+        return body;
+    }
+
+    private static HttpRequest getHttpRequest(String uri) {
+        return HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
+    }
 
-
-        HttpResponse<String> response;
-        try {
-            response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException e) {
-            throw new RestClientException("Error communicating client api");
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RestClientException("Error communicating client api");
-        }
-
-        final var body = response.body();
-        if(body.contains("Error")) {
-            throw new InvalidInputException("Invalid Input");
-        }
-        return body;
-
+    private static HttpClient getHttpClient() {
+        return HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
     }
 }
