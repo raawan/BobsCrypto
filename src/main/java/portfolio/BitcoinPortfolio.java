@@ -16,6 +16,13 @@ public class BitcoinPortfolio {
         this.fileApi = fileApi;
     }
 
+    public void printResult() {
+        printLine();
+        calculateValueOfEachBitcoin().forEach((key, value) -> System.out.println(key + ":" + value));
+        printLine();
+        System.out.println("TOTAL:"+calculatePortfolioValue());
+        printLine();
+    }
 
     public BigDecimal calculatePortfolioValue() {
         return calculateValueOfEachBitcoin()
@@ -52,6 +59,10 @@ public class BitcoinPortfolio {
     private String extractBitcoinValueFromResponse(String bitCoinValue) {
         //Example response format--> {"EUR":324.12}
         return bitCoinValue.substring(bitCoinValue.indexOf(":") + 1, bitCoinValue.length() - 1);
+    }
+
+    private void printLine() {
+        System.out.println("-------------------");
     }
 
 }
