@@ -7,6 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+import portfolio.exception.InvalidInputException;
 import portfolio.exception.RestClientException;
 
 public class ClientApi {
@@ -40,7 +41,11 @@ public class ClientApi {
             throw new RestClientException("Error communicating client api");
         }
 
-        return response.body();
+        final var body = response.body();
+        if(body.contains("Error")) {
+            throw new InvalidInputException("Invalid Input");
+        }
+        return body;
 
     }
 }

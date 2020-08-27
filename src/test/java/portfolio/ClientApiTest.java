@@ -39,9 +39,9 @@ public class ClientApiTest {
 
         Exception exception = assertThrows(
                 InvalidInputException.class,
-                () -> clientApi.getBitCoinValue("BTC", "xxx"));
+                () -> clientApi.getBitCoinValue("BTC", "EURo"));
 
-        assertTrue(exception.getMessage().contains("Invalid input"));
+        assertTrue(exception.getMessage().contains("Invalid Input"));
 
     }
 
