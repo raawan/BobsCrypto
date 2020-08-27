@@ -17,7 +17,10 @@ public class BitcoinPortfolio {
     }
 
     public double calculatePortfolioValue(Map<String, BigDecimal> totalValuePerBitcoin) {
-        return 0.0;
+        return totalValuePerBitcoin.values()
+                .stream()
+                .reduce(new BigDecimal("0"), BigDecimal::add)
+                .doubleValue();
     }
 
     public Map<String, BigDecimal> calculateValueOfEachBitcoin() {
