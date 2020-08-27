@@ -20,7 +20,7 @@ public class BitcoinPortfolio {
         return 0.0;
     }
 
-    public Map<String, BigDecimal> calculateBitcoinTotalValue() {
+    public Map<String, BigDecimal> calculateValueOfEachBitcoin() {
         return fileApi.getLines()
                 .stream()
                 .collect(
