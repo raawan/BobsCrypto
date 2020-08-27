@@ -1,7 +1,7 @@
 package portfolio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,9 @@ class BitcoinPortfolioTest {
         final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateValueOfEachBitcoin();
 
         assertEquals(3, totalValueOfEachBitcoin.size());
-        assertTrue(totalValueOfEachBitcoin.get("BTC").doubleValue() != 0);
-        assertTrue(totalValueOfEachBitcoin.get("ETH").doubleValue() != 0);
-        assertTrue(totalValueOfEachBitcoin.get("ATOM").doubleValue() != 0);
+        assertNotEquals(0, totalValueOfEachBitcoin.get("BTC").doubleValue());
+        assertNotEquals(0, totalValueOfEachBitcoin.get("ETH").doubleValue());
+        assertNotEquals(0, totalValueOfEachBitcoin.get("ATOM").doubleValue());
 
     }
 
@@ -34,7 +34,7 @@ class BitcoinPortfolioTest {
                 new FileApi("src/test/resources/bobs_crypto_test.txt"));
 
         final var totalPortfolioValue = bitcoinPortfolio.calculatePortfolioValue();
-        assertTrue(totalPortfolioValue.doubleValue() != 0);
+        assertNotEquals(0, totalPortfolioValue.doubleValue());
 
     }
 

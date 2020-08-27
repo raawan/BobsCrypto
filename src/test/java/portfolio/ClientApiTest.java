@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 import portfolio.exception.InvalidInputException;
 
-public class ClientApiTest {
+class ClientApiTest {
 
     @Test
     void shouldReturnEURvalueForETHbitcoin() {
