@@ -32,12 +32,22 @@ public class BitcoinPortfolio {
 
     private BigDecimal calculateBitcoinValue(String line) {
         String bitCoinValue = clientApi.getBitCoinValue(getBitcoinName(line), EUR);
-        final var result = new BigDecimal(bitCoinValue.substring(bitCoinValue.indexOf(":") + 1, bitCoinValue.length() - 1))
-                .multiply(new BigDecimal(Integer.valueOf(line.trim().substring(line.indexOf("=") + 1, line.length()))));
+        final var result = new BigDecimal(extractBitcoinValueFromResponse(bitCoinValue))
+                .multiply(new BigDecimal(getBitCoinUnits(line)));
         return result.setScale(2, RoundingMode.CEILING);
     }
 
     private String getBitcoinName(String line) {
         return line.trim().substring(0, line.indexOf("="));
     }
+
+    private Integer getBitCoinUnits(String line) {
+        return Integer.valueOf(line.trim().substring(line.indexOf("=") + 1, line.length()));
+    }
+
+    private String extractBitcoinValueFromResponse(String bitCoinValue) {
+        //Example response format--> {"EUR":324.12}
+        return bitCoinValue.substring(bitCoinValue.indexOf(":") + 1, bitCoinValue.length() - 1);
+    }
+
 }
