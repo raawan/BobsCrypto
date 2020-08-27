@@ -15,7 +15,7 @@ public class BitcoinPortfolioTest {
         BitcoinPortfolio bitcoinPortfolio = new BitcoinPortfolio(new ClientApi(),
                 new FileApi("src/test/resources/bobs_crypto_test_onebitcoin.txt"));
 
-        final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateBitcoinTotalValue(bitcoinPortfolio.getFileApi().getLines());
+        final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateBitcoinTotalValue();
 
         assertEquals(1, totalValueOfEachBitcoin.size());
         assertTrue(totalValueOfEachBitcoin.get("BTC").doubleValue()!=0);
@@ -28,7 +28,7 @@ public class BitcoinPortfolioTest {
         BitcoinPortfolio bitcoinPortfolio = new BitcoinPortfolio(new ClientApi(),
                 new FileApi("src/test/resources/bobs_crypto_test.txt"));
 
-        final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateBitcoinTotalValue(bitcoinPortfolio.getFileApi().getLines());
+        final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateBitcoinTotalValue();
 
         assertEquals(3, totalValueOfEachBitcoin.size());
         assertTrue(totalValueOfEachBitcoin.get("BTC").doubleValue()!=0);

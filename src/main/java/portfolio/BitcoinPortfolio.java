@@ -3,7 +3,6 @@ package portfolio;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BitcoinPortfolio {
@@ -16,20 +15,12 @@ public class BitcoinPortfolio {
         this.fileApi = fileApi;
     }
 
-    public ClientApi getClientApi() {
-        return clientApi;
-    }
-
-    public FileApi getFileApi() {
-        return fileApi;
-    }
-
     public double calculatePortfolioValue(Map<String, Double> totalValuePerBitcoin) {
         return 0.0;
     }
 
-    public Map<String, BigDecimal> calculateBitcoinTotalValue(List<String> fileInput) {
-        return fileInput
+    public Map<String, BigDecimal> calculateBitcoinTotalValue() {
+        return fileApi.getLines()
                 .stream()
                 .collect(
                         HashMap::new,
