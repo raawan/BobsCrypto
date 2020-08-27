@@ -3,14 +3,12 @@ package portfolio;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 public class FileApiTest {
 
     @Test
-    public void shouldReturnAllFileDataAsStringPerLine() throws IOException {
+    public void shouldReturnAllFileDataAsStringPerLine() {
 
         FileApi fileApi = new FileApi("src/test/resources/bobs_crypto_test.txt");
         final var lines = fileApi.getLines();
