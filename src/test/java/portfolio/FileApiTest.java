@@ -3,17 +3,22 @@ package portfolio;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 public class FileApiTest {
 
     @Test
-    public void shouldReturnAllFileDataAsStringPerLine() {
+    public void shouldReturnAllFileDataAsStringPerLine() throws IOException {
 
-        FileApi fileApi = new FileApi("resources/bobs_crypto_test.txt");
+        FileApi fileApi = new FileApi("src/test/resources/bobs_crypto_test.txt");
         final var lines = fileApi.getLines();
         assertNotNull(lines);
         assertEquals(3, lines.size());
+        assertEquals("ETH=5", lines.stream().filter(line -> line.equalsIgnoreCase("ETH=5")).findAny().get());
+        assertEquals("BTC=10", lines.stream().filter(line -> line.equalsIgnoreCase("BTC=10")).findAny().get());
+        assertEquals("ATOM=13", lines.stream().filter(line -> line.equalsIgnoreCase("ATOM=13")).findAny().get());
     }
 
 }
