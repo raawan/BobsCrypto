@@ -16,11 +16,12 @@ public class BitcoinPortfolio {
         this.fileApi = fileApi;
     }
 
-    public double calculatePortfolioValue(Map<String, BigDecimal> totalValuePerBitcoin) {
-        return totalValuePerBitcoin.values()
+
+    public BigDecimal calculatePortfolioValue() {
+        return calculateValueOfEachBitcoin()
+                .values()
                 .stream()
-                .reduce(new BigDecimal("0"), BigDecimal::add)
-                .doubleValue();
+                .reduce(new BigDecimal("0"), BigDecimal::add);
     }
 
     public Map<String, BigDecimal> calculateValueOfEachBitcoin() {

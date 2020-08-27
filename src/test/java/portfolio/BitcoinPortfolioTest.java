@@ -33,8 +33,8 @@ class BitcoinPortfolioTest {
         BitcoinPortfolio bitcoinPortfolio = new BitcoinPortfolio(new ClientApi(),
                 new FileApi("src/test/resources/bobs_crypto_test.txt"));
 
-        final var totalPortfolioValue = bitcoinPortfolio.calculatePortfolioValue(bitcoinPortfolio.calculateValueOfEachBitcoin());
-        assertTrue(totalPortfolioValue != 0);
+        final var totalPortfolioValue = bitcoinPortfolio.calculatePortfolioValue();
+        assertTrue(totalPortfolioValue.doubleValue() != 0);
 
     }
 
