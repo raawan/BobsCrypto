@@ -16,7 +16,7 @@ public class BitcoinPortfolio {
         this.fileApi = fileApi;
     }
 
-    public double calculatePortfolioValue(Map<String, Double> totalValuePerBitcoin) {
+    public double calculatePortfolioValue(Map<String, BigDecimal> totalValuePerBitcoin) {
         return 0.0;
     }
 
