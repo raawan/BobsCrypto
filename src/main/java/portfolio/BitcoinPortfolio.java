@@ -18,14 +18,15 @@ public class BitcoinPortfolio {
 
     public void printResult() {
         printLine();
-        calculateValueOfEachBitcoin().forEach((key, value) -> System.out.println(key + ":" + value));
+        final var bitcoinValueMap = calculateValueOfEachBitcoin();
+        bitcoinValueMap.forEach((key, value) -> System.out.println(key + ":" + value));
         printLine();
-        System.out.println("TOTAL:"+calculatePortfolioValue());
+        System.out.println("TOTAL:"+calculatePortfolioValue(bitcoinValueMap));
         printLine();
     }
 
-    public BigDecimal calculatePortfolioValue() {
-        return calculateValueOfEachBitcoin()
+    public BigDecimal calculatePortfolioValue(final Map<String, BigDecimal> bitcoinValueMap) {
+        return bitcoinValueMap
                 .values()
                 .stream()
                 .reduce(new BigDecimal("0"), BigDecimal::add);
