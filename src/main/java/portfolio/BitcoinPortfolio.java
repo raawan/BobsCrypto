@@ -21,7 +21,7 @@ public class BitcoinPortfolio {
         final var bitcoinValueMap = calculateValueOfEachBitcoin();
         bitcoinValueMap.forEach((key, value) -> System.out.println(key + ":" + value));
         printLine();
-        System.out.println("TOTAL:"+calculatePortfolioValue(bitcoinValueMap));
+        System.out.println("TOTAL:" + calculatePortfolioValue(bitcoinValueMap));
         printLine();
     }
 
@@ -35,6 +35,7 @@ public class BitcoinPortfolio {
     public Map<String, BigDecimal> calculateValueOfEachBitcoin() {
         return fileApi.getLines()
                 .stream()
+                .filter(line -> !(line.isEmpty() || line.isBlank()))
                 .collect(
                         HashMap::new,
                         (map, line) -> map.put(getBitcoinName(line), calculateBitcoinValue(line)),

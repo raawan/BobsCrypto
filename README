@@ -19,8 +19,28 @@ ASSUMPTIONS:
     1) If the file input contain invalid bitcoin code , an exception will be thrown to notify the user
     2) the format of each line in the input file is assumed to be as follows with no leading or trailing spaces :
             BTC=10
+    3) All the calculations are done for EUR as interpreted from requirements.
+        {Although this can be change in BitcoinPortfolio.java}
 
 NOTE:
     The code commits are merely to demonstrate how the solution is evolved using TDD process.
     The commits will differ in actual life
     Please use JAVA 11 as your default when running from command line
+
+SAMPLE OUTPUT:
+    -------------------
+    BTC:96660.80
+    BSV:8071.00
+    BCH:1854.40
+    XRP:458.60
+    BNB:481.25
+    ETH:1641.80
+    EOS:69.85
+    USDT:11.84
+    LINK:1270.00
+    LTC:344.68
+    ADA:3.08
+    ATOM:80.89
+    -------------------
+    TOTAL:110948.19
+    -------------------

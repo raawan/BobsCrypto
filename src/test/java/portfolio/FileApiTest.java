@@ -13,7 +13,6 @@ class FileApiTest {
         FileApi fileApi = new FileApi("src/test/resources/bobs_crypto_test.txt");
         final var lines = fileApi.getLines();
         assertNotNull(lines);
-        assertEquals(3, lines.size());
         assertEquals("ETH=5", lines.stream().filter(line -> line.equalsIgnoreCase("ETH=5")).findAny().get());
         assertEquals("BTC=10", lines.stream().filter(line -> line.equalsIgnoreCase("BTC=10")).findAny().get());
         assertEquals("ATOM=13", lines.stream().filter(line -> line.equalsIgnoreCase("ATOM=13")).findAny().get());
