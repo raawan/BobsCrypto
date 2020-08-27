@@ -3,16 +3,24 @@ VERSIONS:
      2)   Junit 5
 
 HOW TO RUN:
-    1) goto Projects java folder {BobsCrypto/src/main/java}
-    2) run -> javac */*.java
-    3) java client.ConsoleClient <<relative or absolute path to bobs crypto file>>>
-        ex:  java client.ConsoleClient ../resources/bobs_crypto.txt
+    A] Using JAVA
+        1) goto Projects java folder {BobsCrypto/src/main/java}
+        2) run -> javac */*.java
+        3) run -> java client.ConsoleClient <<relative or absolute path to bobs crypto file>>>
+                    ex:  java client.ConsoleClient ../resources/bobs_crypto.txt
+
+    B] Using GRADLEW
+        1) goto root project directory {BobsCrypto}
+        2) run -> ./gradlew clean build
+        3) run -> ./gradlew run --args="<<Absolute or relative path to bobs crypto file>>"
+                    ex: ./gradlew run --args="src/main/resources/bobs_crypto.txt"
 
 ASSUMPTIONS:
     1) If the file input contain invalid bitcoin code , an exception will be thrown to notify the user
-    2) the format of each line in the input file is assumed to be as follows :
+    2) the format of each line in the input file is assumed to be as follows with no leading or trailing spaces :
             BTC=10
 
 NOTE:
     The code commits are merely to demonstrate how the solution is evolved using TDD process.
     The commits will differ in actual life
+    Please use JAVA 11 as your default when running from command line
