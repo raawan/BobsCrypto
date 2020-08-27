@@ -17,7 +17,7 @@ public class BitcoinPortfolioTest {
         final var totalValueOfEachBitcoin = bitcoinPortfolio.calculateBitcoinTotalValue(bitcoinPortfolio.getFileApi().getLines());
 
         assertEquals(1, totalValueOfEachBitcoin.size());
-        assertTrue(totalValueOfEachBitcoin.get("BTC") != 0);
+        assertTrue(totalValueOfEachBitcoin.get("BTC").doubleValue()!=0);
     }
 
 }
