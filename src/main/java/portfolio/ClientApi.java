@@ -7,9 +7,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+import portfolio.exception.RestClientException;
+
 public class ClientApi {
 
-    public String getBitCoinValue(String bitcoin, String currency) throws IOException, InterruptedException {
+    public String getBitCoinValue(String bitcoin, String currency) {
 
         String uri = new StringBuilder()
                 .append("https://min-api.cryptocompare.com/data/price?fsym=")
@@ -27,7 +29,16 @@ public class ClientApi {
                 .GET()
                 .build();
 
-        HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+        HttpResponse<String> response;
+        try {
+            response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException e) {
+            throw new RestClientException("Error communicating client api");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RestClientException("Error communicating client api");
+        }
 
         return response.body();
 

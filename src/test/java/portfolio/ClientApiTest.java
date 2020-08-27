@@ -3,7 +3,6 @@ package portfolio;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class ClientApiTest {
 
     @Test
-    void shouldReturnEURvalueForETHbitcoin() throws IOException, InterruptedException {
+    void shouldReturnEURvalueForETHbitcoin() {
         ClientApi clientApi = new ClientApi();
         String bitCoinValue = clientApi.getBitCoinValue("ETH", "EUR");
         assertNotNull(bitCoinValue);
@@ -22,7 +21,7 @@ public class ClientApiTest {
     }
 
     @Test
-    void shouldReturnGBPvalueForBTCbitcoin() throws IOException, InterruptedException {
+    void shouldReturnGBPvalueForBTCbitcoin() {
         ClientApi clientApi = new ClientApi();
         String bitCoinValue = clientApi.getBitCoinValue("BTC", "GBP");
         assertNotNull(bitCoinValue);
