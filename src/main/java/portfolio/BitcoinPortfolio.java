@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class BitcoinPortfolio {
 
+    public static final String EUR = "EUR";
     private final ClientApi clientApi;
     private final FileApi fileApi;
 
@@ -24,15 +25,19 @@ public class BitcoinPortfolio {
                 .stream()
                 .collect(
                         HashMap::new,
-                        (map, line) -> map.put(line.trim().substring(0, line.indexOf("=")), calculateBitcoinValue(line)),
+                        (map, line) -> map.put(getBitcoinName(line), calculateBitcoinValue(line)),
                         Map::putAll
                 );
     }
 
     private BigDecimal calculateBitcoinValue(String line) {
-        String bitCoinValue = clientApi.getBitCoinValue(line.trim().substring(0, line.indexOf("=")), "EUR");
+        String bitCoinValue = clientApi.getBitCoinValue(getBitcoinName(line), EUR);
         final var result = new BigDecimal(bitCoinValue.substring(bitCoinValue.indexOf(":") + 1, bitCoinValue.length() - 1))
                 .multiply(new BigDecimal(Integer.valueOf(line.trim().substring(line.indexOf("=") + 1, line.length()))));
         return result.setScale(2, RoundingMode.CEILING);
+    }
+
+    private String getBitcoinName(String line) {
+        return line.trim().substring(0, line.indexOf("="));
     }
 }
